@@ -39,39 +39,30 @@ class PersonalAttributesController: UIViewController {
     }
 
     @IBAction func SaveClick(sender: AnyObject) {
-        var attAge : Int
-        var calIntake : Int
-        var attHeight : Int
-        var attWeight : Int
-        var exerTime : Int
+        var attAge : Int = 0
+        var calIntake : Int = 0
+        var attHeight : Int = 0
+        var attWeight : Int = 0
+        var exerTime : Int = 0
         
         if let x: Int = Int(age.text!){
             attAge = x
-        }else{
-            return
         }
         
         if let x: Int = Int(intake.text!){
             calIntake = x
-        }else{
-            return
         }
         
         if let x: Int = Int(height.text!){
             attHeight = x
-        }else{
-            return
         }
         
         if let x: Int = Int(weight.text!){
             attWeight = x
-        }else{
-            return
         }
+        
         if let x: Int = Int(timeExer.text!){
             exerTime = x
-        }else{
-            return
         }
         
         
