@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import CoreData
 
 class PersonalAttributesController: UIViewController {
 
+    @IBOutlet weak var dateLb: UILabel!
+    @IBOutlet weak var age: UITextField!
+    @IBOutlet weak var height: UITextField!
+    @IBOutlet weak var weight: UITextField!
+    @IBOutlet weak var intake: UITextField!
+    @IBOutlet weak var timeExer: UITextField!
+    @IBOutlet weak var intensitySelection: UIPickerView!
+    @IBOutlet weak var gender: UITextField!
+    
+    var intensity = ["Light","Medium","Heavy"]
+    var selectedItem : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let date : NSDate = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM-dd-YYYY"
+        let str = formatter.stringFromDate(date)
+        dateLb.text = str
+        selectedItem = intensity[0]
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,4 +38,70 @@ class PersonalAttributesController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func SaveClick(sender: AnyObject) {
+        var attAge : Int
+        var calIntake : Int
+        var attHeight : Int
+        var attWeight : Int
+        var exerTime : Int
+        
+        if let x: Int = Int(age.text!){
+            attAge = x
+        }else{
+            return
+        }
+        
+        if let x: Int = Int(intake.text!){
+            calIntake = x
+        }else{
+            return
+        }
+        
+        if let x: Int = Int(height.text!){
+            attHeight = x
+        }else{
+            return
+        }
+        
+        if let x: Int = Int(weight.text!){
+            attWeight = x
+        }else{
+            return
+        }
+        if let x: Int = Int(timeExer.text!){
+            exerTime = x
+        }else{
+            return
+        }
+        
+        
+        var model = attributesModel(age: attAge,Weight:attWeight,Height: attHeight,Cal: calIntake,Gender: gender.text!,Minutes: exerTime,Type: selectedItem,Date: dateLb.text!)
+        
+        if model.exists(){
+            model.update()
+        }else{
+            model.create()
+        }
+        
+        let controllers = self.tabBarController?.viewControllers
+        let resultsController = controllers![1] as! ResultsController
+        resultsController.update()
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.intensity.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return self.intensity[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        selectedItem = intensity[row]
+    }
 }

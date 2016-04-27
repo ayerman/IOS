@@ -15,6 +15,7 @@
 		2442B7FC1CB474280013AE85 /* PersonalAttributesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B7FB1CB474280013AE85 /* PersonalAttributesController.swift */; };
 		2442B7FE1CB4743F0013AE85 /* ResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B7FD1CB4743F0013AE85 /* ResultsController.swift */; };
 		2442B8001CB4745B0013AE85 /* ConfigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B7FF1CB4745B0013AE85 /* ConfigController.swift */; };
+		246DE4DE1CD0273300B11C37 /* attributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246DE4DD1CD0273300B11C37 /* attributesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		2442B7FB1CB474280013AE85 /* PersonalAttributesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalAttributesController.swift; sourceTree = "<group>"; };
 		2442B7FD1CB4743F0013AE85 /* ResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsController.swift; sourceTree = "<group>"; };
 		2442B7FF1CB4745B0013AE85 /* ConfigController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigController.swift; sourceTree = "<group>"; };
+		246DE4DC1CCEF12700B11C37 /* Personal_Trainer 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Personal_Trainer 2.xcdatamodel"; sourceTree = "<group>"; };
+		246DE4DD1CD0273300B11C37 /* attributesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = attributesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 				2442B7FB1CB474280013AE85 /* PersonalAttributesController.swift */,
 				2442B7FD1CB4743F0013AE85 /* ResultsController.swift */,
 				2442B7FF1CB4745B0013AE85 /* ConfigController.swift */,
+				246DE4DD1CD0273300B11C37 /* attributesModel.swift */,
 			);
 			path = "Personal Trainer";
 			sourceTree = "<group>";
@@ -149,6 +153,7 @@
 				2442B8001CB4745B0013AE85 /* ConfigController.swift in Sources */,
 				2442B7E71CB470F50013AE85 /* AppDelegate.swift in Sources */,
 				2442B7FC1CB474280013AE85 /* PersonalAttributesController.swift in Sources */,
+				246DE4DE1CD0273300B11C37 /* attributesModel.swift in Sources */,
 				2442B7EF1CB470F50013AE85 /* Personal_Trainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +320,7 @@
 		2442B7ED1CB470F50013AE85 /* Personal_Trainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				246DE4DC1CCEF12700B11C37 /* Personal_Trainer 2.xcdatamodel */,
 				2442B7EE1CB470F50013AE85 /* Personal_Trainer.xcdatamodel */,
 			);
 			currentVersion = 2442B7EE1CB470F50013AE85 /* Personal_Trainer.xcdatamodel */;

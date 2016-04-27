@@ -4,13 +4,12 @@
         <attribute name="age" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="calorieintake" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="minworked" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="worktype" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attributes" positionX="-54" positionY="45" width="128" height="165"/>
+        <element name="Attributes" positionX="-54" positionY="45" width="128" height="150"/>
     </elements>
 </model>

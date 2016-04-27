@@ -7,13 +7,73 @@
 //
 
 import UIKit
+import CoreData
 
 class ResultsController: UIViewController {
 
+    
+    @IBOutlet weak var bmiLb: UILabel!
+    @IBOutlet weak var avgWeightLb: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        update()
+    }
+    
+    public func update(){
+        let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDel.managedObjectContext
+        
+        do{
+            let request = NSFetchRequest(entityName: "Attributes")
+            let results = try context.executeFetchRequest(request)
+            var currentModel = attributesModel()
+            var avgWeight : Int = 0
+            
+            if results.count > 0 {
+                var latestDate : NSDate? = nil
+                for item in results as! [NSManagedObject] {
+                    avgWeight += (item.valueForKey("weight") as! Int)
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "MMM-dd-yyyy"
+                    var date = dateFormatter.dateFromString((item.valueForKey("date") as! String))!
+                    if let newDate = latestDate{
+                        let test = newDate.compare(date)
+                        if  test == NSComparisonResult.OrderedDescending {
+                            latestDate = date
+                            currentModel._age = (item.valueForKey("age") as! Int)
+                            currentModel._calorieIntake = (item.valueForKey("calorieintake") as! Int)
+                            currentModel._date = (item.valueForKey("date") as! String)
+                            currentModel._gender = (item.valueForKey("gender") as! String)
+                            currentModel._height = (item.valueForKey("height") as! Int)
+                            currentModel._minworked = (item.valueForKey("minworked") as! Int)
+                            currentModel._weight = (item.valueForKey("weight") as! Int)
+                            currentModel._worktype = (item.valueForKey("worktype") as! String)
+                        }
+                    }else{
+                        latestDate = date
+                        currentModel._age = (item.valueForKey("age") as! Int)
+                        currentModel._calorieIntake = (item.valueForKey("calorieintake") as! Int)
+                        currentModel._date = (item.valueForKey("date") as! String)
+                        currentModel._gender = (item.valueForKey("gender") as! String)
+                        currentModel._height = (item.valueForKey("height") as! Int)
+                        currentModel._minworked = (item.valueForKey("minworked") as! Int)
+                        currentModel._weight = (item.valueForKey("weight") as! Int)
+                        currentModel._worktype = (item.valueForKey("worktype") as! String)
+                    }
+                }
+                
+            }
+            let bmiVal = Double(currentModel._weight * 703)/pow(Double(currentModel._height),2.0)
+            let formatter = NSNumberFormatter()
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+            bmiLb.text! = formatter.stringFromNumber(bmiVal)!
+            avgWeightLb.text! = String(avgWeight)
+        }
+        catch{
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
