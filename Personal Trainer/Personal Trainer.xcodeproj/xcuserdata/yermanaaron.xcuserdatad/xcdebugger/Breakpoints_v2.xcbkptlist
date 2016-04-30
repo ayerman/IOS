@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Personal Trainer/PersonalAttributesController.swift"
-            timestampString = "483408136.533231"
+            timestampString = "483749370.510596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
-            landmarkType = "5">
+            startingLineNumber = "125"
+            endingLineNumber = "125">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,22 +46,6 @@
             startingLineNumber = "24"
             endingLineNumber = "24"
             landmarkName = "init(age:Weight:Height:Cal:Gender:Minutes:Type:Date:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Personal Trainer/PersonalAttributesController.swift"
-            timestampString = "483405233.153782"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "SaveClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

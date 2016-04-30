@@ -31,6 +31,26 @@ class PersonalAttributesController: UIViewController {
         let str = formatter.stringFromDate(date)
         dateLb.text = str
         selectedItem = intensity[0]
+        let doubleFormatter = NSNumberFormatter()
+        doubleFormatter.minimumFractionDigits = 0
+        doubleFormatter.maximumFractionDigits = 0
+        var model = attributesModel()
+        model._date = str
+        model.getAttributes()
+        age.text! = String(model._age)
+        height.text! = String(model._height)
+        weight.text! = String(model._weight)
+        intake.text! = String(model._calorieIntake)
+        timeExer.text! = String(model._minworked)
+        gender.text! = String(model._gender)
+        var count = 0
+        for item in intensity {
+            if item == model._worktype {
+                selectedItem = item
+                intensitySelection.selectRow(count,inComponent: 0,animated: true)
+            }
+            count+=1
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,24 +67,24 @@ class PersonalAttributesController: UIViewController {
         var attWeight : Int = 0
         var exerTime : Int = 0
         
-        if let x: Int = Int(age.text!){
-            attAge = x
+        if Int(age.text!) != nil{
+            attAge = Int(age.text!)!
         }
         
-        if let x: Int = Int(intake.text!){
-            calIntake = x
+        if Int(intake.text!) != nil{
+            calIntake = Int(intake.text!)!
         }
         
-        if let x: Int = Int(height.text!){
-            attHeight = x
+        if Double(height.text!) != nil{
+            attHeight = Int(Double(height.text!)!)
         }
         
-        if let x: Int = Int(weight.text!){
-            attWeight = x
+        if Double(weight.text!) != nil{
+            attWeight = Int(Double(weight.text!)!)
         }
         
-        if let x: Int = Int(timeExer.text!){
-            exerTime = x
+        if Double(timeExer.text!) != nil{
+            exerTime = Int(Double(timeExer.text!)!)
         }
         
         

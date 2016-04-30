@@ -103,6 +103,37 @@ class attributesModel{
         }
     }
     
+    public func getAttributes(){
+        let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context : NSManagedObjectContext = appDel.managedObjectContext
+        
+        do{
+            let request = NSFetchRequest(entityName: "Attributes")
+            let results = try context.executeFetchRequest(request)
+            
+            if results.count > 0 {
+                
+                for item in results as! [NSManagedObject] {
+                    var date = (item.valueForKey("date") as! String)
+                    if date == _date{
+                        _age = (item.valueForKey("age") as! Int)
+                        _calorieIntake = (item.valueForKey("calorieintake") as! Int)
+                        _date = (item.valueForKey("date") as! String)
+                        _gender = (item.valueForKey("gender") as! String)
+                        _height = (item.valueForKey("height") as! Int)
+                        _minworked = (item.valueForKey("minworked") as! Int)
+                        _weight = (item.valueForKey("weight") as! Int)
+                        _worktype = (item.valueForKey("worktype") as! String)
+                    }
+                }
+                
+            }
+        }
+        catch{
+            
+        }
+    }
+    
     public func exists() -> Bool{
         let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context : NSManagedObjectContext = appDel.managedObjectContext

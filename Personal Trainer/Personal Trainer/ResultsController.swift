@@ -13,6 +13,11 @@ class ResultsController: UIViewController {
 
     @IBOutlet weak var bmiLb: UILabel!
     @IBOutlet weak var avgWeightLb: UILabel!
+    @IBOutlet weak var dateLb: UILabel!
+    
+    var fromDate : NSDate? = nil
+    var toDate :NSDate? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +28,8 @@ class ResultsController: UIViewController {
         if bmiLb != nil {
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
-        
+            var count = 0
+            var latestDate : NSDate? = nil
             do{
                 let request = NSFetchRequest(entityName: "Attributes")
                 let results = try context.executeFetchRequest(request)
@@ -31,15 +37,27 @@ class ResultsController: UIViewController {
                 var avgWeight : Int = 0
             
                 if results.count > 0 {
-                    var latestDate : NSDate? = nil
                     for item in results as! [NSManagedObject] {
-                        avgWeight += (item.valueForKey("weight") as! Int)
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "MMM-dd-yyyy"
                         var date = dateFormatter.dateFromString((item.valueForKey("date") as! String))!
-                        if let newDate = latestDate{
-                            let test = newDate.compare(date)
-                            if  test == NSComparisonResult.OrderedDescending {
+                        if fromDate != nil{
+                            let lessThanDate = fromDate!.compare(date)
+                            if lessThanDate == NSComparisonResult.OrderedDescending{
+                                continue
+                            }
+                        }
+                        if toDate != nil{
+                            let greaterThanDate = toDate!.compare(date)
+                            if greaterThanDate == NSComparisonResult.OrderedAscending{
+                                continue
+                            }
+                        }
+                        count+=1
+                        avgWeight += (item.valueForKey("weight") as! Int)
+                        if latestDate != nil{
+                            let test = latestDate!.compare(date)
+                            if  test == NSComparisonResult.OrderedAscending {
                                 latestDate = date
                                 currentModel._age = (item.valueForKey("age") as! Int)
                                 currentModel._calorieIntake = (item.valueForKey("calorieintake") as! Int)
@@ -74,9 +92,22 @@ class ResultsController: UIViewController {
                 if bmiVal != 0 {
                     bmiLb.text! = formatter.stringFromNumber(bmiVal)!
                 }else{
-                    bmiLb.text! = String("No bmi for " + currentModel._date)
+                    bmiLb.text! = String("No bmi recorded")
                 }
-                avgWeightLb.text! = String(avgWeight)
+                
+                if count > 0{
+                    avgWeightLb.text! = String(avgWeight/count)
+                }else if count == 0{
+                    avgWeightLb.text! = "0"
+                }
+                if latestDate != nil{
+                    let formatter = NSDateFormatter()
+                    formatter.dateFormat = "MMM-dd-YYYY"
+                    let str = formatter.stringFromDate(latestDate!)
+                    dateLb.text! = str
+                }else{
+                    dateLb.text! = "No data in selected date range."
+                }
             }
             catch{
             
