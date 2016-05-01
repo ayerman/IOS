@@ -14,6 +14,11 @@ class ResultsController: UIViewController {
     @IBOutlet weak var bmiLb: UILabel!
     @IBOutlet weak var avgWeightLb: UILabel!
     @IBOutlet weak var dateLb: UILabel!
+    @IBOutlet weak var puOut: UILabel!
+    @IBOutlet weak var suOut: UILabel!
+    @IBOutlet weak var mOut: UILabel!
+    
+    @IBOutlet weak var burn: UITextField!
     
     var fromDate : NSDate? = nil
     var toDate :NSDate? = nil
@@ -22,6 +27,19 @@ class ResultsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         update()
+    }
+    
+    @IBAction func GoClick(sender: AnyObject) {
+        var dBurn : Int = 0
+        var ddBurn : Double = 0
+        
+        if Int(burn.text!) != nil{
+            dBurn = Int(burn.text!)!
+            ddBurn = Double(burn.text!)!
+        }
+        puOut.text = String(dBurn/10)
+        suOut.text = String(dBurn/3)
+        mOut.text = String(ddBurn/100)
     }
     
     public func update(){

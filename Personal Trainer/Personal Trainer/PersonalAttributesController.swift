@@ -57,8 +57,7 @@ class PersonalAttributesController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+   
 
     @IBAction func SaveClick(sender: AnyObject) {
         var attAge : Int = 0
