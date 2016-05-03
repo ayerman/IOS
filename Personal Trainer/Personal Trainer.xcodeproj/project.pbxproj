@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		242319F21CD81CFB00D9E01F /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A891CD1CD656C60089683C /* Charts.framework */; };
+		242319F31CD81CFB00D9E01F /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81A891CD1CD656C60089683C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		242319F81CD81D0B00D9E01F /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = 242319F71CD81D0B00D9E01F /* Charts */; };
 		2442B7E71CB470F50013AE85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B7E61CB470F50013AE85 /* AppDelegate.swift */; };
 		2442B7EC1CB470F50013AE85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2442B7EA1CB470F50013AE85 /* Main.storyboard */; };
 		2442B7EF1CB470F50013AE85 /* Personal_Trainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2442B7ED1CB470F50013AE85 /* Personal_Trainer.xcdatamodeld */; };
@@ -19,6 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		242319F41CD81CFB00D9E01F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81A891C51CD656C60089683C /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
 		81A891CC1CD656C60089683C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81A891C51CD656C60089683C /* Charts.xcodeproj */;
@@ -49,7 +59,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		242319F61CD81CFB00D9E01F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				242319F31CD81CFB00D9E01F /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		242319F71CD81D0B00D9E01F /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Charts; sourceTree = "<group>"; };
 		2442B7E31CB470F50013AE85 /* Personal Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Personal Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2442B7E61CB470F50013AE85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2442B7EB1CB470F50013AE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				242319F21CD81CFB00D9E01F /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +105,7 @@
 		2442B7DA1CB470F50013AE85 = {
 			isa = PBXGroup;
 			children = (
+				242319F71CD81D0B00D9E01F /* Charts */,
 				2442B7E51CB470F50013AE85 /* Personal Trainer */,
 				2442B7E41CB470F50013AE85 /* Products */,
 				81A891C51CD656C60089683C /* Charts.xcodeproj */,
@@ -131,10 +158,12 @@
 				2442B7DF1CB470F50013AE85 /* Sources */,
 				2442B7E01CB470F50013AE85 /* Frameworks */,
 				2442B7E11CB470F50013AE85 /* Resources */,
+				242319F61CD81CFB00D9E01F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				242319F51CD81CFB00D9E01F /* PBXTargetDependency */,
 			);
 			name = "Personal Trainer";
 			productName = "Personal Trainer";
@@ -220,6 +249,7 @@
 				2442B7F41CB470F50013AE85 /* LaunchScreen.storyboard in Resources */,
 				2442B7F11CB470F50013AE85 /* Assets.xcassets in Resources */,
 				2442B7EC1CB470F50013AE85 /* Main.storyboard in Resources */,
+				242319F81CD81D0B00D9E01F /* Charts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +270,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		242319F51CD81CFB00D9E01F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-iOS";
+			targetProxy = 242319F41CD81CFB00D9E01F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2442B7EA1CB470F50013AE85 /* Main.storyboard */ = {
@@ -350,6 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Personal Trainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,6 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Personal Trainer/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

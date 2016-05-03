@@ -15,7 +15,10 @@ class ConfigController: UIViewController {
     
     @IBOutlet weak var fromDatePicker: UIDatePicker!
     @IBOutlet weak var toDatePicker: UIDatePicker!
+    @IBOutlet weak var resultsPicker: UIPickerView!
     
+    var results = ["Weight","Height","Calorie Intake","Workout Minutes"]
+    var selectedItem : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +66,14 @@ class ConfigController: UIViewController {
         catch{
             
         }
+        var count = 0
+        for item in results {
+            if item == resultsController?.resultsView {
+                selectedItem = item
+                resultsPicker.selectRow(count,inComponent: 0,animated: true)
+            }
+            count+=1
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -78,6 +89,25 @@ class ConfigController: UIViewController {
     @IBAction func toDateChanged(sender: UIDatePicker) {
         resultsController!.toDate = sender.date
         resultsController!.update()
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.results.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return self.results[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        selectedItem = results[row]
+        resultsController?.resultsView = selectedItem
+        resultsController?.update()
     }
     
 }

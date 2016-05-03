@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Charts
 
 class ResultsController: UIViewController {
 
@@ -17,11 +18,16 @@ class ResultsController: UIViewController {
     @IBOutlet weak var puOut: UILabel!
     @IBOutlet weak var suOut: UILabel!
     @IBOutlet weak var mOut: UILabel!
+    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var resultsLb: UILabel!
     
     @IBOutlet weak var burn: UITextField!
     
     var fromDate : NSDate? = nil
     var toDate :NSDate? = nil
+    var dates: [String]!
+    var chartValues:[Double]!
+    var resultsView: String = "Weight"
     
     
     override func viewDidLoad() {
@@ -46,14 +52,15 @@ class ResultsController: UIViewController {
         if bmiLb != nil {
             let appDel : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let context : NSManagedObjectContext = appDel.managedObjectContext
-            var count = 0
             var latestDate : NSDate? = nil
             do{
                 let request = NSFetchRequest(entityName: "Attributes")
                 let results = try context.executeFetchRequest(request)
                 var currentModel = attributesModel()
-                var avgWeight : Int = 0
-            
+                var avgResults : Int = 0
+                var count = 0
+                dates = [String]()
+                chartValues = [Double]()
                 if results.count > 0 {
                     for item in results as! [NSManagedObject] {
                         let dateFormatter = NSDateFormatter()
@@ -72,7 +79,31 @@ class ResultsController: UIViewController {
                             }
                         }
                         count+=1
-                        avgWeight += (item.valueForKey("weight") as! Int)
+                        if resultsView == "Weight"{
+                            avgResults += (item.valueForKey("weight") as! Int)
+                            dates.append((item.valueForKey("date") as! String))
+                            chartValues.append((item.valueForKey("weight") as! Double))
+                            resultsLb.text! = "Avg Weight:"
+                        }
+                        else if resultsView == "Height"{
+                            avgResults += (item.valueForKey("height") as! Int)
+                            dates.append((item.valueForKey("date") as! String))
+                            chartValues.append((item.valueForKey("height") as! Double))
+                            resultsLb.text! = "Avg Height:"
+                        }
+                        else if resultsView == "Calorie Intake"{
+                            avgResults += (item.valueForKey("calorieintake") as! Int)
+                            dates.append((item.valueForKey("date") as! String))
+                            chartValues.append((item.valueForKey("calorieintake") as! Double))
+                            resultsLb.text! = "Avg Calories:"
+                        }
+                        else if resultsView == "Workout Minutes"{
+                            avgResults += (item.valueForKey("minworked") as! Int)
+                            dates.append((item.valueForKey("date") as! String))
+                            chartValues.append((item.valueForKey("minworked") as! Double))
+                            resultsLb.text! = "Avg Min Workout:"
+                        }
+                        
                         if latestDate != nil{
                             let test = latestDate!.compare(date)
                             if  test == NSComparisonResult.OrderedAscending {
@@ -114,7 +145,7 @@ class ResultsController: UIViewController {
                 }
                 
                 if count > 0{
-                    avgWeightLb.text! = String(avgWeight/count)
+                    avgWeightLb.text! = String(avgResults/count)
                 }else if count == 0{
                     avgWeightLb.text! = "0"
                 }
@@ -126,11 +157,29 @@ class ResultsController: UIViewController {
                 }else{
                     dateLb.text! = "No data in selected date range."
                 }
+                
+                setChart(dates,values: chartValues)
             }
             catch{
             
             }
         }
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        barChartView.noDataText = "You need to provide data for the chart."
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<dates.count {
+            let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(yVals: dataEntries, label: resultsView)
+        let chartData = BarChartData(xVals: dates, dataSet: chartDataSet)
+        barChartView.data = chartData
+        barChartView.descriptionText = ""
+        
     }
 
     override func didReceiveMemoryWarning() {
